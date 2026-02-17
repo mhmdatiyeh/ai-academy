@@ -1,0 +1,98 @@
+<div class="landing" *ngIf="data$ | async as data">
+
+  <!-- 1) HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+        <h1 class="hero-title">{{ data.hero.headline }}</h1>
+        <p class="hero-subtitle">{{ data.hero.subheadline }}</p>
+
+        <ul class="hero-points">
+          <li *ngFor="let p of data.hero.trustPoints; trackBy: trackByIndex">{{ p }}</li>
+        </ul>
+
+        <div class="hero-actions">
+          <a class="btn primary" [routerLink]="data.hero.primaryCtaLink">
+            {{ data.hero.primaryCtaText }}
+          </a>
+
+          <a class="btn ghost" [attr.href]="data.hero.secondaryCtaLink">
+            {{ data.hero.secondaryCtaText }}
+          </a>
+        </div>
+      </div>
+
+      <!-- small visual to hint progress tracking -->
+      <div class="hero-card">
+        <div class="card-title">Progress Preview</div>
+        <div class="card-sub">Completed vs Remaining</div>
+        <div class="progress">
+          <div class="progress-bar" style="width: 60%"></div>
+        </div>
+        <div class="card-foot">Milestones help you stay consistent.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2) ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">{{ data.about.title }}</h2>
+      <p class="section-desc">{{ data.about.description }}</p>
+
+      <div class="about-list">
+        <div class="about-item" *ngFor="let x of data.about.points; trackBy: trackByIndex">
+          <span class="dot"></span>
+          <span>{{ x }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) PROGRAMS HIGHLIGHT -->
+  <section class="programs">
+    <div class="container">
+      <h2 class="section-title">{{ data.programs.title }}</h2>
+      <p class="section-desc">{{ data.programs.description }}</p>
+
+      <div class="cards">
+        <article class="card" *ngFor="let c of data.programs.cards; trackBy: trackByIndex">
+          <div class="card-head">
+            <h3 class="card-h3">{{ c.title }}</h3>
+            <span class="tag" *ngIf="c.tag">{{ c.tag }}</span>
+          </div>
+
+          <div class="meta">
+            <span class="chip">{{ c.level }}</span>
+            <span class="chip">{{ c.duration }}</span>
+          </div>
+
+          <div class="outcomes">
+            <div class="outcomes-title">Learning outcomes</div>
+            <ul>
+              <li *ngFor="let o of c.outcomes; trackBy: trackByIndex">{{ o }}</li>
+            </ul>
+          </div>
+
+          <a class="card-link" [routerLink]="c.link">View program →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) CTA -->
+  <section class="cta">
+    <div class="container cta-box">
+      <div>
+        <h2 class="cta-title">{{ data.cta.title }}</h2>
+        <p class="cta-desc">{{ data.cta.description }}</p>
+        <small class="cta-note">{{ data.cta.note }}</small>
+      </div>
+
+      <a class="btn primary" [routerLink]="data.cta.buttonLink">{{ data.cta.buttonText }}</a>
+    </div>
+  </section>
+
+</div>
