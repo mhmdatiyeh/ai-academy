@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-
-import { LandingData, LandingService } from '../services/landing.service';
+import { LandingService, LandingData, Program } from '../services/landing.service';
 
 @Component({
   selector: 'app-landing',
@@ -21,7 +20,5 @@ export class LandingComponent implements OnInit {
     this.data$ = this.landingService.getLandingData();
   }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
+  trackByProgramId(index: number, program: Program): number { return program.id; }
 }
